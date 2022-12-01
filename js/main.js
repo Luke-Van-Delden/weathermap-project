@@ -10,14 +10,22 @@ $.get("http://api.openweathermap.org/data/2.5/weather", {
 });
 
 // This logs forecasted data
-$.get("http://api.openweathermap.org/data/2.5/forecast", {
-    APPID: weatherKey,
-    lat:    29.423017,
-    lon:   -98.48527,
-    units: "imperial"
-}).done(function(data) {
+$.get('http://api.openweathermap.org/data/2.5/forecast?lat=29.423017&lon=-98.48527&appid=' + weatherKey).done(function(data) {
     console.log('5 day forecast', data);
 });
+
+// Logs basic data
+// $.get("http://api.openweathermap.org/data/2.5/onecall", {
+//     APPID: weatherKey,
+//     lat:    29.423017,
+//     lon:   -98.48527,
+//     units: "imperial"
+// }).done(function(data) {
+//     console.log('The entire response:', data);
+//     console.log('Diving in - here is current information: ', data.current);
+//     console.log('A step further - information for tomorrow: ', data.daily[1]);
+// });
+
 
 
 
