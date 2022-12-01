@@ -34,7 +34,12 @@ function displayInfoForecast(data) {
         let test = $('#forecast').append('<p>Date: ' + data.dt_txt + ' Temp: ' + data.main.temp + 'F Weather: ' + data.weather[0].main +  '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"> Humidity: ' + data.main.humidity + ' Wind: ' + data.wind.speed + 'mph Pressure: ' + data.main.pressure +  '</p>')
     }
 }
-
+// Takes in input of search, stores as searchFor
+$('#searchbtn').click(function(e){
+    e.preventDefault();
+    let searchFor = $('#addresssearch').val();
+    alert(searchFor)
+})
 
 // TODO: DONE -Creates map zoomed out, centered on San Antonio
 // mapboxgl.accessToken = mapBoxKey;

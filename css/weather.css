@@ -3,6 +3,12 @@
 
 
 /*ID's */
+#addresssearch{
+    width: 25%;
+}
+#searchbtn{
+
+}
 #header{
     background-color: blue;
     color: floralwhite;
