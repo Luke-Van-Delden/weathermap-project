@@ -1,63 +1,46 @@
-// This logs current weather data
+// TODO: Make a click button to change the time of forecast for the 5 days
+
+// Creates current weather info
 $.get("http://api.openweathermap.org/data/2.5/weather", {
     APPID: weatherKey,
     lat: 29.423017,
     lon: -98.48527,
     units: "imperial"
 }).done(function (data) {
-    // console.log('current weather', data);
     displayInfoCurrent(data);
 });
 
+// Creates forecast for 5 days
+$.get("http://api.openweathermap.org/data/2.5/forecast", {
+    APPID: weatherKey,
+    lat: 29.423017,
+    lon: -98.48527,
+    units: "imperial"
+}).done(function (data) {
+    // Use to see object attributes
+    // console.log('5 day forecast', data);
+    data.list.forEach(displayInfoForecast);
+});
+
+// Function to generate info for current day
 function displayInfoCurrent(data) {
-    $('#current').html('<p>Current: Temp ' + data.main.temp + 'F. Weather: ' + data.weather[0].main + ' Humidity: ' + data.main.humidity + ' Wind: ' + data.wind.speed + 'mph  </p>')
+    $('#current').html('<p>Current: Temp ' + data.main.temp + 'F. Weather: ' + data.weather[0].main + ' Humidity: ' + data.main.humidity + ' Wind: ' + data.wind.speed + 'mph Pressure: ' + data.main.pressure +  '</p>')
 }
 
-
+// Function to generate info per day
 function displayInfoForecast(data) {
-        let original = $('#forecast').html();
-        if (data.dt_txt.indexOf("00:00:00") !== -1)
+        if (data.dt_txt.indexOf("15:00:00") !== -1)
     {
-        let test = $('#forecast').append('<p>Date: ' + data.dt_txt + '</p>')
+        let test = $('#forecast').append('<p>Date: ' + data.dt_txt + ' Temp: ' + data.main.temp + 'F Weather: ' + data.weather[0].main +  '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"> Humidity: ' + data.main.humidity + ' Wind: ' + data.wind.speed + 'mph Pressure: ' + data.main.pressure +  '</p>')
     }
 }
 
 
-// #("<p style='font-weight: bold; font-size: 16px; text-align: center; display: inline-block'>" + x.name + ' is in the ' + x.genre + ' genre. My favorite dish there is ' + x.favorite + ' and it is ' + x.fancy + ".</p><br><div>" + x.picture + '</div>')
-// marker.setPopup(pop);
-
-// current needs to show:
-//     Date
-// Temp
-// Description (cloudy, sunny etc)
-// humidity
-// wind
-// pressure
-
-// This logs forecasted data
-$.get('http://api.openweathermap.org/data/2.5/forecast?lat=29.423017&lon=-98.48527&appid=' + weatherKey).done(function (data) {
-    console.log('5 day forecast', data);
-    data.list.forEach(displayInfoForecast);
-});
-
-// Logs basic data
-// $.get("http://api.openweathermap.org/data/2.5/onecall", {
-//     APPID: weatherKey,
-//     lat:    29.423017,
-//     lon:   -98.48527,
-//     units: "imperial"
-// }).done(function(data) {
-//     console.log('The entire response:', data);
-//     console.log('Diving in - here is current information: ', data.current);
-//     console.log('A step further - information for tomorrow: ', data.daily[1]);
-// });
-
-
-// TODO: DONE -Creates map zoomed out, centered around golden dragon
+// TODO: DONE -Creates map zoomed out, centered on San Antonio
 // mapboxgl.accessToken = mapBoxKey;
 // var map = new mapboxgl.Map({
 //     container: 'map',
 //     style: 'mapbox://styles/mapbox/streets-v9',
 //     zoom: 10,
-//     center: [-98.52921778721883, 29.54246088109029],
+//     center: [-98.48527, 29.423017],
 // });
