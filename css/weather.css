@@ -4,11 +4,7 @@
     margin: 0   1em;
 }
 .marker {
-    display: block;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
+    background-color: red;
 }
 
 /*ID's */
