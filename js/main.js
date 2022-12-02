@@ -25,6 +25,8 @@ $.get("http://api.openweathermap.org/data/2.5/forecast", {
 // Function to generate info for current day
 function displayInfoCurrent(data) {
     $('#current').html('<p>Current: Temp ' + data.main.temp + 'F. Weather: ' + data.weather[0].main + ' Humidity: ' + data.main.humidity + ' Wind: ' + data.wind.speed + 'mph Pressure: ' + data.main.pressure +  '</p>')
+    $('#current').html('<div class="row d-flex space-between flex-wrap divbox mb-3 mt-3"><div class="d-flex justify-content-center bg-secondary flex-grow-1">Current</div><div class="d-flex flex-grow-1 justify-content-center"> Temp: ' + data.main.temp + 'F</div><div class="d-flex flex-grow-1 justify-content-center"> Weather: ' + data.weather[0].main +  '</div><div class="d-flex justify-content-center"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center">Humidity: ' + data.main.humidity + '</div><div class="d-flex justify-content-center">Wind: ' + data.wind.speed + 'mph</div><div class="d-flex justify-content-center"> Pressure: ' + data.main.pressure +  '</div></div>')
+
 }
 
 // Function to generate info per day
