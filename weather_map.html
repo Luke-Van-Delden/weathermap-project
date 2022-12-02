@@ -15,14 +15,26 @@
 <body>
 <h1 class="text-center" id="header">Weathermap</h1>
 <form>
-    <div class="d-flex">
-        <input type="text" class="form-control" id="addresssearch" placeholder="Enter name of a city">
+    <div class="d-flex justify-content-center">
+        <input type="text" class="form-control" id="addresssearch" placeholder="Enter name of city EX. Dallas">
         <button type="submit" class="btn btn-primary" id="searchbtn">Search</button>
     </div>
 </form>
 
-<div id="current">Current</div>
-<div id="forecast"></div>
+<!--<div id="current"></div>-->
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-4" id="current">
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div>
+        <div class="d-flex" id="forecast">
+        </div>
+    </div>
+</div>
+<!--<div id="forecast"></div>-->
 
 
 <!-- TODO: DONE- Map Div (created and working)-->

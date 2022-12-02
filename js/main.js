@@ -31,14 +31,31 @@ function displayInfoCurrent(data) {
 function displayInfoForecast(data) {
         if (data.dt_txt.indexOf("15:00:00") !== -1)
     {
-        let test = $('#forecast').append('<p>Date: ' + data.dt_txt + ' Temp: ' + data.main.temp + 'F Weather: ' + data.weather[0].main +  '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"> Humidity: ' + data.main.humidity + ' Wind: ' + data.wind.speed + 'mph Pressure: ' + data.main.pressure +  '</p>')
+        let test = $('#forecast').append('<div class="row d-flex space-between flex-wrap divbox"><div class="d-flex justify-content-center bg-secondary flex-grow-1">Date: ' + data.dt_txt + '</div><div class="d-flex flex-grow-1 justify-content-center"> Temp: ' + data.main.temp + 'F</div><div class="d-flex flex-grow-1 justify-content-center"> Weather: ' + data.weather[0].main +  '</div><div class="d-flex justify-content-center"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center">Humidity: ' + data.main.humidity + '</div><div class="d-flex justify-content-center">Wind: ' + data.wind.speed + 'mph</div><div class="d-flex justify-content-center"> Pressure: ' + data.main.pressure +  '</div></div>')
     }
 }
 // Takes in input of search, stores as searchFor
 $('#searchbtn').click(function(e){
     e.preventDefault();
     let searchFor = $('#addresssearch').val();
-    alert(searchFor)
+    $.get("http://api.openweathermap.org/data/2.5/weather", {
+        APPID: weatherKey,
+        q:     searchFor + ", US",
+        units: "imperial"
+    }).done(function(data) {
+        let original = $('#forecast').html()
+        if (original !== ""){
+            $('#forecast').html("")
+        }
+        displayInfoCurrent(data);
+    });
+    $.get("http://api.openweathermap.org/data/2.5/forecast", {
+        APPID: weatherKey,
+        q: searchFor + ", US",
+        units: "imperial"
+    }).done(function (data) {
+        data.list.forEach(displayInfoForecast);
+    });
 })
 
 // TODO: DONE -Creates map zoomed out, centered on San Antonio
