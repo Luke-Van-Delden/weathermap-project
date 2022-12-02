@@ -1,4 +1,5 @@
 // TODO: Make a click button to change the time of forecast for the 5 days
+// TODO: Move marker to search result
 
 // Creates current weather info
 $.get("http://api.openweathermap.org/data/2.5/weather", {
@@ -32,7 +33,7 @@ function displayInfoCurrent(data) {
 // Function to generate info per day
 function displayInfoForecast(data) {
     if (data.dt_txt.indexOf("15:00:00") !== -1) {
-        let test = $('#forecast').append('<div class="row d-flex space-between flex-wrap divbox"><div class="d-flex justify-content-center bg-secondary flex-grow-1">Date: ' + data.dt_txt + '</div><div class="d-flex flex-grow-1 justify-content-center"> Temp: ' + data.main.temp + 'F</div><div class="d-flex flex-grow-1 justify-content-center"> Weather: ' + data.weather[0].main + '</div><div class="d-flex justify-content-center border-bottom"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center border-bottom">Humidity: ' + data.main.humidity + '</div><div class="d-flex justify-content-center border-bottom">Wind: ' + data.wind.speed + 'mph</div><div class="d-flex justify-content-center"> Pressure: ' + data.main.pressure + '</div></div>')
+        let test = $('#forecast').append('<div class="row d-flex space-between flex-wrap divbox mb-3"><div class="d-flex justify-content-center bg-secondary flex-grow-1">Date: ' + data.dt_txt + '</div><div class="d-flex flex-grow-1 justify-content-center"> Temp: ' + data.main.temp + 'F</div><div class="d-flex flex-grow-1 justify-content-center"> Weather: ' + data.weather[0].main + '</div><div class="d-flex justify-content-center border-bottom"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center border-bottom">Humidity: ' + data.main.humidity + '</div><div class="d-flex justify-content-center border-bottom">Wind: ' + data.wind.speed + 'mph</div><div class="d-flex justify-content-center"> Pressure: ' + data.main.pressure + '</div></div>')
     }
 }
 
@@ -135,6 +136,5 @@ map.on('click', (e) => {
             data.list.forEach(displayInfoForecast);
         });
     }
-
     marker.on('dragend', onDragEnd)
 });
