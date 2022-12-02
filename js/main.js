@@ -1,6 +1,8 @@
 // TODO: Make a click button to change the time of forecast for the 5 days
 // TODO: Move marker to search result
 
+
+
 // Creates current weather info
 $.get("http://api.openweathermap.org/data/2.5/weather", {
     APPID: weatherKey,
@@ -51,6 +53,39 @@ $('#searchbtn').click(function (e) {
             $('#forecast').html("")
         }
         displayInfoCurrent(data);
+        map.flyTo({
+            center: [data.coord.lon, data.coord.lat],
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+        const marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat(data.coord)
+            .addTo(map);
+        function onDragEnd() {
+            const lngLat = marker.getLngLat();
+            $.get("http://api.openweathermap.org/data/2.5/weather", {
+                APPID: weatherKey,
+                lat: lngLat.lat,
+                lon: lngLat.lng,
+                units: "imperial"
+            }).done(function (data) {
+                let original = $('#forecast').html()
+                if (original !== "") {
+                    $('#forecast').html("")
+                }
+                displayInfoCurrent(data);
+            });
+            $.get("http://api.openweathermap.org/data/2.5/forecast", {
+                APPID: weatherKey,
+                lat: lngLat.lat,
+                lon: lngLat.lng,
+                units: "imperial"
+            }).done(function (data) {
+                data.list.forEach(displayInfoForecast);
+            });
+        }
+        marker.on('dragend', onDragEnd)
     });
     $.get("http://api.openweathermap.org/data/2.5/forecast", {
         APPID: weatherKey,
@@ -85,8 +120,6 @@ geolocate.on('geolocate', () => {
 });
 // Example of a MapMouseEvent of type "click"
 map.on('click', (e) => {
-    console.log(e);
-    console.log(e.lngLat)
     const marker = new mapboxgl.Marker({
         draggable: true
     })
