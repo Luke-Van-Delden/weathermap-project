@@ -3,9 +3,6 @@
     border: 1px solid lightgray;
     margin: 0   1em;
 }
-.marker {
-    background-color: red;
-}
 
 /*ID's */
 #addresssearch{
@@ -14,7 +11,7 @@
 #searchbtn{
     margin-left: 1em;
 }
-#header{
+#topofpage{
     background-color: blue;
     color: floralwhite;
 }
