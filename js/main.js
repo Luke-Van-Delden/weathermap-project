@@ -76,6 +76,7 @@ function onDragEnd() {
         data.list.forEach(displayInfoForecast);
     });
 }
+
 marker.on('dragend', onDragEnd)
 
 // Creates new marker on mouseclick, updates current and forecasted weather at that location- is draggable
@@ -202,13 +203,13 @@ $('#searchbtn').click(function (e) {
 
 // Function to generate info for current day
 function displayInfoCurrent(data) {
-    $('#current').html('<div class="row d-flex space-between flex-wrap divbox mb-3 mt-3"><div class="d-flex justify-content-center bg-secondary flex-grow-1">Current</div><div class="d-flex flex-grow-1 justify-content-center"> Temp: ' + data.main.temp + 'F</div><div class="d-flex flex-grow-1 justify-content-center"> Weather: ' + data.weather[0].main + '</div><div class="d-flex justify-content-center border-bottom"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center border-bottom">Humidity: ' + data.main.humidity + '</div><div class="d-flex justify-content-center border-bottom">Wind: ' + data.wind.speed + 'mph</div><div class="d-flex justify-content-center"> Pressure: ' + data.main.pressure + '</div></div>')
+    $('#current').html('<div class="row d-flex space-between flex-wrap divbox mb-3 mt-3"><div class="d-flex justify-content-center bg-secondary flex-grow-1"><span>Current Weather</span></div><div class="d-flex flex-grow-1 justify-content-center"> Temp: <span>' + data.main.temp + 'F</span></div><div class="d-flex flex-grow-1 justify-content-center"> Weather: <span>' + data.weather[0].main + '</span></div><div class="d-flex justify-content-center border-bottom"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center border-bottom">Humidity: <span>' + data.main.humidity + '</span></div><div class="d-flex justify-content-center border-bottom">Wind: <span>' + data.wind.speed + 'mph</span></div><div class="d-flex justify-content-center"> Pressure: <span>' + data.main.pressure + '</span></div></div>')
 
 }
 
 // Function to generate info per day
 function displayInfoForecast(data) {
     if (data.dt_txt.indexOf("15:00:00") !== -1) {
-        let test = $('#forecast').append('<div class="row d-flex space-between flex-wrap divbox mb-3"><div class="d-flex justify-content-center bg-secondary flex-grow-1">Date: ' + data.dt_txt + '</div><div class="d-flex flex-grow-1 justify-content-center"> Temp: ' + data.main.temp + 'F</div><div class="d-flex flex-grow-1 justify-content-center"> Weather: ' + data.weather[0].main + '</div><div class="d-flex justify-content-center border-bottom"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center border-bottom">Humidity: ' + data.main.humidity + '</div><div class="d-flex justify-content-center border-bottom">Wind: ' + data.wind.speed + 'mph</div><div class="d-flex justify-content-center"> Pressure: ' + data.main.pressure + '</div></div>')
+        let test = $('#forecast').append('<div class="row d-flex space-between flex-wrap divbox mb-3"><div class="d-flex justify-content-center bg-secondary flex-grow-1">Date: <span>' + data.dt_txt + '</span></div><div class="d-flex flex-grow-1 justify-content-center"> Temp: <span>' + data.main.temp + 'F</span></div><div class="d-flex flex-grow-1 justify-content-center"> Weather: <span>' + data.weather[0].main + '</span></div><div class="d-flex justify-content-center border-bottom"><img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div><div class="d-flex justify-content-center border-bottom">Humidity: <span>' + data.main.humidity + '</span></div><div class="d-flex justify-content-center border-bottom">Wind: <span>' + data.wind.speed + 'mph</span></div><div class="d-flex justify-content-center"> Pressure: <span>' + data.main.pressure + '</span></div></div>')
     }
 }

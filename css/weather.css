@@ -1,24 +1,32 @@
+span{
+    font-weight: bold;
+}
+
 /* Classes */
-.divbox{
+.divbox {
     border: 1px solid lightgray;
-    margin: 0   1em;
+    margin: 0 1em;
 }
 
 /*ID's */
-#addresssearch{
+#addresssearch {
     width: 20%;
 }
-#searchbtn{
+
+#searchbtn {
     margin-left: 1em;
 }
-#topofpage{
+
+#topofpage {
     background-color: blue;
     color: floralwhite;
 }
-#forecast{
+
+#forecast {
     width: 100%;
     margin-right: 1.5em;
 }
+
 #map {
     /* the width and height may be set to any size */
     width: 100%;
