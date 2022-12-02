@@ -45,7 +45,7 @@ $('#searchbtn').click(function (e) {
     let searchFor = $('#addresssearch').val();
     $.get("http://api.openweathermap.org/data/2.5/weather", {
         APPID: weatherKey,
-        q: searchFor + ", US",
+        q: searchFor,
         units: "imperial"
     }).done(function (data) {
         let original = $('#forecast').html()
@@ -89,7 +89,7 @@ $('#searchbtn').click(function (e) {
     });
     $.get("http://api.openweathermap.org/data/2.5/forecast", {
         APPID: weatherKey,
-        q: searchFor + ", US",
+        q: searchFor,
         units: "imperial"
     }).done(function (data) {
         data.list.forEach(displayInfoForecast);
