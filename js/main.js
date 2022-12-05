@@ -15,6 +15,7 @@ $.get("http://api.openweathermap.org/data/2.5/forecast", {
     lon: -98.48527,
     units: "imperial"
 }).done(function (data) {
+    $('#topofpage').html("Weathermap: " + data.city.name)
     data.list.forEach(displayInfoForecast);
 });
 
@@ -73,6 +74,7 @@ function onDragEnd() {
         lon: lngLat.lng,
         units: "imperial"
     }).done(function (data) {
+        $('#topofpage').html("Weathermap: " + data.city.name)
         data.list.forEach(displayInfoForecast);
     });
 }
@@ -106,6 +108,7 @@ map.on('click', (e) => {
         lon: e.lngLat.lng,
         units: "imperial"
     }).done(function (data) {
+        $('#topofpage').html("Weathermap: " + data.city.name)
         data.list.forEach(displayInfoForecast);
     });
 
@@ -134,6 +137,7 @@ map.on('click', (e) => {
             lon: lngLat.lng,
             units: "imperial"
         }).done(function (data) {
+            $('#topofpage').html("Weathermap: " + data.city.name)
             data.list.forEach(displayInfoForecast);
         });
     }
