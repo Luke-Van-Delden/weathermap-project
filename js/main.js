@@ -132,43 +132,14 @@ $('#searchbtn').click(function (e) {
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
         marker.setLngLat(data.coord)
-
-        function onDragEnd() {
-            const lngLat = marker.getLngLat();
-            $.get("http://api.openweathermap.org/data/2.5/weather", {
-                APPID: weatherKey,
-                lat: lngLat.lat,
-                lon: lngLat.lng,
-                units: "imperial"
-            }).done(function (data) {
-                let original = $('#forecast').html()
-                if (original !== "") {
-                    $('#forecast').html("")
-                }
-                displayInfoCurrent(data);
-                map.flyTo({
-                    center: [data.coord.lon, data.coord.lat],
-                    essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-                    zoom: 11
-                });
-            });
-            $.get("http://api.openweathermap.org/data/2.5/forecast", {
-                APPID: weatherKey,
-                lat: lngLat.lat,
-                lon: lngLat.lng,
-                units: "imperial"
-            }).done(function (data) {
-                data.list.forEach(displayInfoForecast);
-            });
-        }
-
-        marker.on('dragend', onDragEnd)
     });
     $.get("http://api.openweathermap.org/data/2.5/forecast", {
         APPID: weatherKey,
         q: searchFor,
         units: "imperial"
     }).done(function (data) {
+        $('#topofpage').html("Weathermap: " + data.city.name)
+
         data.list.forEach(displayInfoForecast);
     });
 })
